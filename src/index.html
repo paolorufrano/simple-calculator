@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles/main.scss" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <p id="output"></p>
+        <button class="top-function" data-function="allClear()">AC</button>
+        <button class="top-function" data-function="setOppositeVal()">+ / -</button>
+        <button class="top-function" data-function="setPercent()">%</button>
+        <button class="operator" data-function="setOperator('divide')">÷</button>
+
+        <!-- row  -->
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button class="operator" data-function="setOperator('multiply')">x</button>
+
+        <!-- row 3 -->
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button class="operator" data-function="setOperator('subtract')">-</button>
+
+        <!-- row 4 -->
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button class="operator" data-function="setOperator('add')">+</button>
+
+        <!-- row 5 -->
+        <button class="span-2" data-value="0">0</button>
+        <button data-value=".">.</button>
+        <button class="operator" data-function="calculate()">=</button>
+      </div>
+    </div>
+  </body>
+</html>

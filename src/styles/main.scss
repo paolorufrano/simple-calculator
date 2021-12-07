@@ -1,0 +1,69 @@
+@import 'reset';
+
+body {
+  background-color: white;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.container {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 0.1rem solid #000;
+
+  button {
+    background: #777574;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 8rem;
+    transition: all ease-in-out 0.1s;
+    outline: 0.1rem solid #5e4d44;
+    text-align: center;
+
+    &:active {
+      background: #b4b2b1;
+    }
+
+    &.operator {
+      background: #ff9f0b;
+
+      &:active {
+        background: #cb7e05;
+      }
+    }
+
+    &.top-function {
+      background: #5d5b59;
+
+      &:active {
+        background: #777574;
+      }
+    }
+  }
+}
+
+#output {
+  outline: 0.1rem solid #121212;
+  background: #121212;
+  color: #fff;
+  text-align: right;
+  padding: 0 2rem;
+  font-size: 4rem;
+  line-height: 8rem;
+  grid-column: 1 / span 4;
+}
+
+.span-2 {
+  grid-column: 1 / span 2;
+}

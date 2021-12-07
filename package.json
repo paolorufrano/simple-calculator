@@ -1,0 +1,17 @@
+{
+  "name": "simple-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "author": "Paolo Rufrano",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
+    "parcel": "^2.0.1"
+  }
+}
