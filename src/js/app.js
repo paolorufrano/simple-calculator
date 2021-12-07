@@ -17,8 +17,6 @@ const setDisplay = text => {
 }
 
 const setOperator = operator => {
-  console.log('set operator', operator)
-
   switch (operator) {
     case 'add':
       state.operator = (a, b) => add(a, b)
