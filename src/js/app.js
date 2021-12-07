@@ -57,7 +57,7 @@ const setPercent = () => {
   const { editing } = state
 
   state[editing] > 0 ? (state[editing] = percent(state[editing])) : false
-  setDisplay(state[state.editing])
+  setDisplay(state[editing])
 }
 
 const setOppositeVal = () => {
@@ -93,3 +93,46 @@ values.forEach(button => {
     setValue(button.getAttribute('data-value'))
   })
 })
+
+// Keybindings
+
+const keyMaps = e => {
+  console.log(e.key)
+  const { key } = e
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const operators = [
+    { key: '+', value: 'add' },
+    { key: '-', value: 'subtract' },
+    { key: '/', value: 'divide' },
+    { key: '*', value: 'multiply' },
+  ]
+
+  if (key === '=' || key === 'Enter') {
+    calculate()
+    return
+  }
+
+  if (key === '%') {
+    setPercent()
+    return
+  }
+
+  if (key === 'Escape') {
+    allClear()
+    return
+  }
+
+  if (numbers.includes(parseInt(key))) {
+    setValue(key)
+    return
+  }
+
+  operators.forEach(operator => {
+    if (operator.key === key) {
+      setOperator(operator.value)
+      return
+    }
+  })
+}
+
+document.addEventListener('keydown', keyMaps)
