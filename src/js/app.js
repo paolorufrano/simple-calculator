@@ -48,6 +48,9 @@ const setOperator = operator => {
 
 const setValue = newVal => {
   const { editing } = state
+  const hasPoint = state[editing].toString().includes('.')
+
+  if (newVal === '.' && hasPoint) return
 
   state[editing] === 0 ? (state[editing] = newVal) : (state[editing] += newVal)
   setDisplay(state[state.editing])
@@ -78,6 +81,47 @@ const calculate = () => {
   setDisplay(state.output)
 }
 
+const keyMaps = e => {
+  const { key } = e
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const operators = [
+    { key: '+', value: 'add' },
+    { key: '-', value: 'subtract' },
+    { key: '/', value: 'divide' },
+    { key: '*', value: 'multiply' },
+  ]
+
+  switch (key) {
+    case '=':
+    case 'Enter':
+      calculate()
+      return
+    case '%':
+      setPercent()
+      return
+    case 'Escape':
+      allClear()
+      return
+    case '.':
+    case ',':
+      setValue('.')
+      return
+    default:
+      if (numbers.includes(parseInt(key))) {
+        setValue(key)
+        return
+      }
+
+      operators.forEach(operator => {
+        if (operator.key === key) {
+          setOperator(operator.value)
+          return
+        }
+      })
+      break
+  }
+}
+
 // Start the app
 
 setDisplay(state.primary)
@@ -93,46 +137,5 @@ values.forEach(button => {
     setValue(button.getAttribute('data-value'))
   })
 })
-
-// Keybindings
-
-const keyMaps = e => {
-  console.log(e.key)
-  const { key } = e
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  const operators = [
-    { key: '+', value: 'add' },
-    { key: '-', value: 'subtract' },
-    { key: '/', value: 'divide' },
-    { key: '*', value: 'multiply' },
-  ]
-
-  if (key === '=' || key === 'Enter') {
-    calculate()
-    return
-  }
-
-  if (key === '%') {
-    setPercent()
-    return
-  }
-
-  if (key === 'Escape') {
-    allClear()
-    return
-  }
-
-  if (numbers.includes(parseInt(key))) {
-    setValue(key)
-    return
-  }
-
-  operators.forEach(operator => {
-    if (operator.key === key) {
-      setOperator(operator.value)
-      return
-    }
-  })
-}
 
 document.addEventListener('keydown', keyMaps)
